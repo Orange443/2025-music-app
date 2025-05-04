@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Flagged Songs
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <br>
+    <h1 class="page-title">All Songs</h1>
+    <div class="song-list">
+      {% for song in all_songs %}
+        <div class="song-card">
+          <h2>{{ song.title }}</h2>
+          <hr>
+          <p class="artist">Artist: {{ song.artist }}</p>
+          <p class="genre">Genre: {{ song.genre }}</p>
+          <p class="flag-status">{{ 'Flagged' if song.is_flag else 'Not Flagged' }}</p>
+          <div class="actions">
+            <form action="{{ url_for('unflag_song', song_id=song.song_id) }}" method="post">
+              <button type="submit" name="flagging" value="unflag" class="btn btn-warning">Unflag</button>
+            </form>
+            <form action="{{ url_for('flag_song', song_id=song.song_id) }}" method="post">
+              <button type="submit" name="flagging" value="flag" class="btn btn-warning">Flag</button>
+            </form>
+            <form action="{{ url_for('remove_song', song_id=song.song_id) }}" method="post">
+              <button type="submit" class="btn btn-outline-danger">Delete</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block style %}
+<style>
+    body {
+        background-color: #c3e6e8; /* Pastel Blue Color */
+        font-family: Arial, sans-serif;
+    }
+
+    .page-title {
+        color: rgb(70, 109, 236);
+        background-color: #fff;
+        text-align: center;
+        box-shadow: 4px 6px;
+    }
+
+    .song-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .song-card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 10px;
+        width: calc(33.33% - 20px);
+        box-shadow: 4px 6px;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .actions form {
+        margin-right: 10px; /* Add space between buttons */
+    }
+
+    .btn.btn-warning {
+        background-color: #33a3ff;
+        color: #000000;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 9px;
+        cursor: pointer;
+        box-shadow: 4px 6px;
+    }
+
+    .btn.btn-outline-danger {
+        background-color: #ff0000;
+        color: #000000;
+        cursor: pointer;
+        box-shadow: 4px 6px;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Tune Library
+{% endblock %}
+
+{% block content %}
+{% include 'searchbar.html' with context %}
+<br>
+<div class="album-list">
+    {% for album in albums %}
+        <div class="album">
+            <h3>{{ album.title }}</h3>
+            <div class="song-list">
+                {% for song in album.songs %}
+                    <div class="song flex-column">
+                        <div class="song-info">
+                            <h4>{{ song.title }}</h4>
+                            <p>Artist: {{ song.artist }}</p>
+                            <p>Genre: {{ song.genre }}</p>
+                            <p>Lyrics: {{ song.lyrics }}</p>
+                        </div>
+                        <audio src="/uploads/{{ song.filename }}" controls>
+                            Your browser does not support the audio element.
+                        </audio>
+                        <div class="button-container">
+                            <form method="POST" action="{{ url_for('rate_song', song_id=song.song_id) }}">
+                                {% if song.is_flag %}
+                                <button type="submit" name="rating" value="like" class="btn btn-success" disabled>Like</button>
+                                <button type="submit" name="rating" value="dislike" class="btn btn-danger" disabled>Dislike</button>
+                                {% else %}
+                                <button type="submit" name="rating" value="like" class="btn btn-success">Like</button>
+                                <button type="submit" name="rating" value="dislike" class="btn btn-danger">Dislike</button>
+                                {% endif %}
+                            </form>
+                            <form method="POST" action="{{ url_for('add_to_playlist', song_id=song.song_id) }}">
+                                {% if song.is_flag %}
+                                <button type="submit" class="btn btn-primary" disabled>Add to Playlist</button>
+                                {% else %}
+                                <button type="submit" class="btn btn-primary">Add to Playlist</button>
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<br>
+{% endblock %}
+
+{% block style %}
+<style>
+    .album-list {
+        display: flex;
+        flex-wrap: wrap;
+        border: 1px solid #000000;
+        border-radius: 10px;
+        background-color: rgba(177, 214, 244, 0.855)
+    }
+
+    .album {
+        background-color: rgb(255, 179, 124);
+        border: 1px solid #000000;
+        border-radius: 7px;
+        padding: 20px;
+        margin: 10px;
+        box-shadow: 4px 6px;
+    }
+
+    h3{
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-style: italic;
+    }
+
+    .song {
+        border-top: 1px solid #000000;
+        margin-top: 10px;
+        padding-top: 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+   
+    .song p {
+        color: #363636;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: large;
+    }
+
+
+    .button-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .btn-success {
+        background-color: #4caf50;
+        color: black;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 4px 6px;
+    }
+
+    .btn-danger {
+        display: inline-block;
+        margin-left: 10px;
+        margin-right: 10px;
+        background-color: #ff4433;
+        padding: 8px 16px;
+        color: black;
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 4px 6px;
+        
+    }
+
+    .btn-primary {
+        background-color: #3392fff3;
+        color: black;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 4px 6px;
+    }
+</style>
+{% endblock %}

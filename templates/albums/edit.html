@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Edit Album 
+{% endblock %}
+
+{% block style %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .form-container {
+        background-color: rgb(255, 250, 177);
+        border-radius: 8px;
+        padding: 20px;
+        margin: auto;
+        margin-top: 20px;
+        width: 500px;
+        margin-bottom: 20px;
+        box-shadow: 4px 6px;
+    }
+
+
+    label {
+        display: block;
+        margin-top: 10px;
+        color: #666;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        box-shadow: 4px 6px;
+    }
+
+    input[type="date"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+        font-size: 16px;
+        box-shadow: 4px 6px;
+
+    }
+
+    input[type="submit"] {
+        display: inline-block;
+        margin-right: 10px;
+        background-color: #ffe733eb;
+        padding: 8px 16px;
+        color: black;
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 4px 6px;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #ffe733;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<br>
+<div class="form-container">
+    <h1>Edit Album</h1>
+    <hr>
+    <form method="post" class="form">
+        <label for="title" class="form-label">Title:
+            <input type="text" name="title" id="title" class="form-control" required value="{{album.title}}"/>
+        </label>
+        <label for="release_date" class="form-label">Release Date:
+            <input type="date" name="release_date" id="release_date" class="form-control" required value="{{album.release_date}}"/>
+        </label>
+        <label for="genre" class="form-label">Genre:
+            <input type="text" name="genre" id="genre" class="form-control" required value="{{album.genre}}"/>
+        </label>
+        <input type="submit" value="Save" class="btn btn-success">
+    </form>
+</div>
+{% endblock %}

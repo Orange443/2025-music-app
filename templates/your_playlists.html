@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Your Playlist
+{% endblock %}
+
+{% block content %}
+<br>
+    <div class="playlist">
+        <h2>Your Playlist</h2>
+        <hr>
+        <ul class="song-list">
+            {% for playlist_item in playlist %}
+                <div class="song">
+                    <h3>{{ playlist_item.song.title }}</h3>
+                    <p>Artist: {{ playlist_item.song.artist }}</p>
+                    <p>Genre: {{ playlist_item.song.genre }}</p>
+                </div>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+{% block style %}
+<style>
+    .playlist {
+        background-color: #f4f4f4;
+        padding: 20px;
+        border-radius: 5px;
+        color: #2e2e2e;
+        box-shadow: 4px 6px;
+    }
+
+    .playlist h2 {
+        font-size: 1.5rem;
+        color: #333333c3;
+        margin-bottom: 10px;
+    }
+
+    .song-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .song-list li {
+        font-size: 1.2rem;
+        color: #333;
+        margin-top: 10px;
+    }
+</style>
+{% endblock %}

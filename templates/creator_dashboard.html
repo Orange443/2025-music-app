@@ -1,0 +1,118 @@
+{% extends 'layout.html' %}
+{% block title %}
+    Creator Dashboard
+{% endblock %}
+
+{% block content %}
+<br>
+    <h1 class="text-center">Creator Dashboard</h1>
+    <br>
+    <div class="heading">
+        <h2 class="text-muted">Albums</h2>
+        <a class="btn btn-success" href="{{ url_for('add_album') }}">
+            <i class="fas fa-plus"></i>
+            Add Album
+        </a>
+    </div>
+    <table class="table table-hover">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th>Title</th>
+                <th>Release Date</th>
+                <th>Genre</th>
+                <th>Number Of Songs</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for album in albums %}
+                <tr>
+                    <td>{{ album.title }}</td>
+                    <td>{{ album.release_date }}</td>
+                    <td>{{ album.genre }}</td>
+                    <td>{{ album.song_count() }}</td>
+                    <td>
+                        <a class="btn btn-outline-info" href="{{ url_for('show_album', album_id=album.album_id) }}">
+                            <i class="far fa-file-audio"></i>
+                            Show
+                        </a>
+                        <a class="btn btn-warning" href="{{ url_for('edit_album', album_id=album.album_id) }}">
+                            <i class="fas fa-edit"></i>
+                            Edit
+                        </a>
+                        <a class="btn btn-danger" href="{{ url_for('delete_album', album_id=album.album_id) }}">
+                            <i class="fas fa-trash"></i>
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block style %}
+<style>
+    .heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    h1, h2 {
+        text-align: center;
+
+    }
+
+    .btn i {
+        margin-right: 5px;
+    }
+
+    .btn-success {
+        background-color: #4caf50;
+        color: black;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 4px 6px;
+    }
+    .btn-danger {
+        display: inline-block;
+        margin-right: 10px;
+        background-color: #ff4433;
+        padding: 8px 16px;
+        color: black;
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 4px 6px;
+    }
+    .btn-warning{
+        display: inline-block;
+        margin-right: 10px;
+        background-color: #ffe733eb;
+        padding: 8px 16px;
+        color: black;
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 4px 6px;
+    }
+    .btn-outline-info{
+        display: inline-block;
+        margin-right: 10px;
+        background-color: #33c2ffeb;
+        padding: 8px 16px;
+        color: black;
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 4px 6px;
+    }
+</style>
+{% endblock %}

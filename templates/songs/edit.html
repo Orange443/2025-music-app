@@ -1,0 +1,99 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Edit Song 
+{% endblock %}
+
+{% block style %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .form-container {
+        background-color: #a1ceffd2;
+        border-radius: 8px;
+        padding: 20px;
+        margin: auto;
+        margin-top: 20px;
+        width: 500px;
+        margin-bottom: 20px;
+        box-shadow: 4px 6px;
+    }
+
+
+    label {
+        display: block;
+        margin-top: 10px;
+        color: #666;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        box-shadow: 4px 6px;
+    }
+
+    input[type="date"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+        font-size: 16px;
+        box-shadow: 4px 6px;
+
+    }
+
+    input[type="submit"] {
+        display: inline-block;
+        margin-right: 10px;
+        background-color: #33b4ff;
+        padding: 8px 16px;
+        color: black;
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 14px;
+        box-shadow: 4px 6px;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #33b4ff;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Edit Song</h1>
+    <hr>
+    <form method="post" class="form">
+        <label for="title" class="form-label">Title:
+            <input type="text" name="title" id="title" class="form-control" required value="{{song.title}}"/>
+        </label>
+        <label for="artist" class="form-label">Artist:
+            <input type="text" name="artist" id="artist" class="form-control" required value="{{song.artist}}"/>
+        </label>
+        <label for="lyrics" class="form-label">Lyrics:
+            <textarea name="lyrics" id="lyrics" class="form-control" required>{{song.lyrics}}</textarea>
+        </label>
+        <label for="genre" class="form-label">Genre:
+            <input type="text" name="genre" id="genre" class="form-control" required value="{{song.genre}}"/>
+        </label>
+        <input type="submit" value="Save" class="btn btn-success">
+    </form>
+</div>
+<br>
+{% endblock %}

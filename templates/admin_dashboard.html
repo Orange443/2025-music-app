@@ -1,0 +1,121 @@
+    {% extends 'layout.html' %}
+
+    {% block title %}
+    Admin Dashboard 
+    {% endblock %}
+
+    {% block content %}
+    <br>
+    <div class="container-lg">
+        <h1>Admin Dashboard - Tunes Library </h1>
+    <hr>
+
+        <div class="card bg-light mb-3">
+            <div class="card-header">
+                <h2>App Statistics</h2>
+            </div>
+                <div class="card-body">    
+                <div class="row">
+
+                    <div class="col">
+                        <div class="data-box">
+                            <h3>Total Number Of Users</h3>
+                            <p >{{ total_users }}</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="data-box">
+                            <h3>Total Number Of Creators</h3>
+                            <p>{{ total_creators }}</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="data-box">
+                            <h3>Total Number Of Albums</h3>
+                            <p>{{ total_albums }}</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="data-box">
+                            <h3>Total Number Of Genres</h3>
+                            <p>{{ distinct_genres }}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+<br>
+    <!--       code for song chart                            -->
+        <div class="card bg-light mb-3">
+            <div class="card-header">
+                <h2>Song Ratings Chart</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <canvas id="songRatingsBarChart"    ></canvas>
+                </div>
+            </div>
+        </div>
+    <!--       code for song chart                            -->
+    </div>
+    <br>
+    <!--       chart.js script                     -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js">
+    </script>
+    <script>
+
+        var songLabels = {{ song_labels | tojson }};
+        var songRatings = {{ song_ratings | tojson }};
+
+        var ctx = document.getElementById('songRatingsBarChart');
+        var songRatingsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: songLabels,
+                datasets: [{
+                    label: 'Song Ratings',
+                    data: songRatings,
+                    backgroundColor: 'rgba(89, 160, 255, 0.7)',
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        }
+        );
+    </script>
+    <!--       chart.js script                     -->
+    {% endblock %}
+
+    {% block style %}
+    <style>
+
+
+        .data-box {
+        background-color: #63bbf1da;
+        border: 1px solid;
+        border-radius: 20px;
+        box-shadow: 4px 6px;
+        padding: 10px;
+        }
+
+        .data-box p {
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 30px;
+        }
+
+        .card {
+            border: 1px solid;
+            box-shadow: 4px 6px;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+    {% endblock %}
