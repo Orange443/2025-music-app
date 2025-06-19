@@ -1,0 +1,552 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #ecf0f1;
+    --accent-color: #1abc9c;
+    --text-color: #34495e;
+    --light-text-color: #ffffff; /* For dark backgrounds */
+    --success-color: #2ecc71;
+    --danger-color: #e74c3c;
+    --border-color: #bdc3c7;
+    --card-bg-color: #ffffff;
+    --hover-tint-dark: rgba(0,0,0,0.05);
+    --hover-tint-light: rgba(255,255,255,0.1);
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+    background-color: var(--secondary-color); /* Lighter page background */
+    line-height: 1.6;
+    margin: 0; /* Overriding some template-specific body margins */
+    padding: 0; /* Overriding some template-specific body margins */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+/* Ensuring template-specific h1, h2, h3 are overridden or integrated if necessary */
+/* For example, h3 from original .album might be handled by .album h3 below */
+/* General h1, h2, from creator_dashboard and admin_dashboard */
+h1, h2 {
+    text-align: center;
+}
+
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.container { /* General container improvements */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* General Button Styles */
+.btn { /* Assuming Bootstrap .btn is used, or create a general .button class */
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    /* Overriding some specific button display properties */
+    display: inline-block;
+    margin-right: 0; /* Resetting specific margins if any */
+}
+
+.btn:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}
+.btn-primary:hover {
+    background-color: #34495e; /* Darken primary */
+    color: var(--light-text-color);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: var(--light-text-color);
+}
+.btn-success:hover {
+    background-color: #27ae60; /* Darken success */
+    color: var(--light-text-color);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: var(--light-text-color);
+}
+.btn-danger:hover {
+    background-color: #c0392b; /* Darken danger */
+    color: var(--light-text-color);
+}
+
+.btn-warning { /* For edit/update actions perhaps */
+    background-color: #f39c12; /* Keep a distinct warning color */
+    color: var(--light-text-color);
+}
+.btn-warning:hover {
+    background-color: #e67e22; /* Darken warning */
+    color: var(--light-text-color);
+}
+
+.btn-info { /* For less critical actions or info */
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+}
+.btn-info:hover {
+    background-color: #16a085; /* Darken accent */
+    color: var(--light-text-color);
+}
+
+.btn i { /* Style for icons inside buttons, from albums/show.html & creator_dashboard.html */
+    margin-right: 5px;
+}
+
+
+form {
+    background-color: var(--card-bg-color);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    margin-bottom: 20px; /* Add some space below forms */
+    /* Overriding some template-specific form display properties */
+    display: block; /* Default form display */
+    /* text-align: left; /* Default form text-align */
+}
+
+/* searchbar.html specific form styling */
+/* Giving it a more specific selector to override general form if needed */
+.container-fluid > form.d-flex {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent; /* Searchbar form might not need a card background */
+    box-shadow: none;
+    padding: 0;
+}
+
+
+label {
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-color);
+    margin-bottom: 8px; /* Add space below labels */
+    display: block; /* Ensure labels take full width */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+input[type="file"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px; /* Consistent spacing */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-sizing: border-box; /* Important for width calculation */
+    font-family: 'Open Sans', sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    /* Removing old box-shadows from inputs */
+    box-shadow: none;
+}
+
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+input[type="file"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.25); /* Focus indicator */
+    outline: none;
+}
+
+/* searchbar.html specific input styling */
+#search { /* From searchbar.html */
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 50%;
+}
+#parameter { /* From searchbar.html */
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 20%;
+}
+
+
+.album-list {
+    display: grid; /* Use grid for better alignment */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 20px;
+    border: none;
+    background-color: transparent;
+}
+
+.album {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+    margin: 0; /* Resetting specific margins */
+}
+
+.album:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.album h3 { /* Album title */
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal; /* Remove italic */
+    font-size: 1.5em;
+    margin-top: 0; /* Remove default heading margin if inside card */
+    color: var(--primary-color); /* Ensure heading color consistency */
+}
+
+.song {
+    border-top: 1px solid var(--border-color);
+    margin-top: 15px;
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column; /* Stack song info and controls vertically */
+    gap: 10px; /* Space between elements in a song item */
+}
+
+.song-info h4 { /* Song title */
+     font-family: 'Montserrat', sans-serif;
+     font-size: 1.2em;
+     margin-top: 0;
+     margin-bottom: 5px;
+     color: var(--primary-color); /* Ensure heading color consistency */
+}
+
+.song p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.95em; /* Slightly smaller for details */
+    color: var(--text-color);
+    margin-bottom: 5px; /* Adjust spacing */
+}
+
+audio { /* Style audio controls */
+    width: 100%;
+    margin-top: 10px;
+}
+
+.button-container { /* For like/dislike/playlist buttons */
+    display: flex;
+    gap: 10px; /* Space out buttons */
+    align-items: center;
+    margin-top: 10px; /* Add some space above button container */
+}
+
+/* Styles from specific templates, adapted */
+
+/* templates/admin_dashboard.html */
+.data-box {
+    background-color: var(--card-bg-color); /* Using card background */
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* Consistent border-radius */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Consistent shadow */
+    padding: 20px; /* Consistent padding */
+}
+.data-box p {
+    font-family: 'Montserrat', sans-serif; /* Consistent heading font */
+    font-size: 2em; /* Adjusted size */
+    color: var(--primary-color);
+}
+.card { /* General card style for admin dashboard, can be merged or kept if specific */
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    background-color: var(--card-bg-color);
+}
+
+/* templates/creator_dashboard.html & albums/show.html */
+.heading { /* Used for section headers with a button */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+
+/* templates/flagged_songs.html */
+.page-title {
+    color: var(--primary-color);
+    background-color: var(--card-bg-color);
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+.song-list { /* This was used in flagged_songs and your_playlists */
+    display: grid; /* Changed from flex to grid for consistency with album-list */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    list-style-type: none; /* For UL in your_playlists */
+    padding: 0; /* For UL in your_playlists */
+}
+
+.song-card { /* From flagged_songs.html, make consistent with .album */
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+}
+.song-card:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+.song-card h2 { /* Song title in song-card */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5em;
+    margin-top: 0;
+    color: var(--primary-color);
+}
+.actions { /* Container for buttons in song-card */
+    display: flex;
+    justify-content: space-between; /* This might need adjustment if buttons wrap */
+    gap:10px;
+    margin-top: 15px;
+}
+.actions form {
+    margin-right: 0; /* Remove old margin */
+    background-color: transparent; /* No card background for these forms */
+    padding: 0;
+    box-shadow: none;
+}
+
+
+/* templates/review_creator.html */
+.table { /* General table styling, can be enhanced */
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    background-color: var(--card-bg-color);
+}
+.table th, .table td {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+.table thead th {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    font-family: 'Montserrat', sans-serif;
+}
+.table tbody tr:nth-of-type(even) {
+    background-color: var(--secondary-color);
+}
+.table tbody tr:hover {
+    background-color: var(--hover-tint-dark);
+}
+
+
+/* templates/signup_as_creator.html */
+.creator-box { /* Specific box on signup_as_creator page */
+    padding: 25px;
+    border-radius: 8px;
+    background-color: var(--card-bg-color);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    text-align: center; /* Keep text-align center from original */
+    margin-top: 50px; /* Adjusted from 100px for consistency with other top margins */
+}
+.creator-box h2{
+    margin-top:0; /* Remove excess margin for h2 inside this box */
+}
+
+/* templates/your_playlists.html */
+.playlist {
+    background-color: var(--card-bg-color);
+    padding: 25px;
+    border-radius: 8px;
+    color: var(--text-color);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+.playlist h2 { /* Title "Your Playlist" */
+    font-size: 1.8em; /* Adjusted size */
+    color: var(--primary-color);
+    margin-bottom: 15px; /* Adjusted margin */
+    margin-top:0;
+    text-align:left; /* Align with content */
+}
+/* .song-list li is handled by general .song-list > .song styling if structure is similar */
+/* If .song-list li is directly used, it needs specific styling: */
+.playlist .song-list li { /* Styles for direct LI elements if used */
+    font-size: 1.2rem;
+    color: var(--text-color); /* Use text color variable */
+    margin-top: 10px;
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+.playlist .song-list li:last-child {
+    border-bottom: none;
+}
+
+
+/* Styles from templates/layout.html - already handled by global body, .navbar */
+.navbar { /* From layout.html - if any specific styles are still needed */
+     margin: 0 auto; /* This was an old style, might not be needed with Bootstrap defaults */
+}
+
+/* Styles from login, register, admin_login containers */
+.login-container, .register-container, .admin-login-container {
+    text-align: center;
+    margin-top: 50px;
+}
+/* Their forms are covered by general form styling */
+
+/* Styles from form-container in various templates (albums/add, songs/add, etc.) */
+/* These are now covered by the general 'form' styling. */
+/* We can remove .form-container if it's only used for background and padding, */
+/* or adapt it if it has other structural roles. */
+/* For now, assuming general 'form' is enough. */
+
+.fst-italic { /* From albums/show.html for inline style replacement */
+    font-style: italic;
+}
+
+/* Remove or adapt .delete-container from delete templates if general form/card styling is enough */
+.delete-container {
+    background-color: var(--card-bg-color); /* Consistent with other cards */
+    border: 1px solid var(--border-color); /* Consistent border */
+    border-radius: 8px;
+    padding: 25px; /* Consistent padding */
+    width: auto; /* Let it be controlled by content or grid/flex container */
+    max-width: 500px; /* Set a max-width for better appearance */
+    text-align: center;
+    margin: 50px auto; /* Center it on the page */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+.delete-container h1, .delete-container h5 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+.delete-container .form { /* The form inside delete-container */
+    background-color: transparent; /* No double background */
+    box-shadow: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+/* Remove .bin-icon if not used, or ensure it's styled if part of .btn */
+/* .bin-icon was for delete buttons, covered by .btn i now */
+
+/* Remove .creator-button as it's covered by .btn .btn-primary */
+/* Remove .delete-button as it's covered by .btn .btn-danger */
+
+/* Final check on specific .button-container from review_creator.html */
+/* This one is already display:flex, gap can be added if not already there from .btn margins */
+.review-creator-button-container { /* More specific if needed */
+    display: flex;
+    gap: 10px; /* Ensures spacing if not handled by btn margins */
+}
+
+/* Responsive Adjustments */
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    .album-list {
+        /* Adjust grid for fewer columns on tablets if needed */
+        /* Example: grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); */
+    }
+
+    h1 { font-size: 2.25rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.4rem; } /* Adjusted from default 1.5em for album titles */
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+    .album-list {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Or even 1 column */
+        /* Consider 1 column for very small screens if content is rich */
+        /* grid-template-columns: 1fr; */
+    }
+
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* Make form containers and other specific containers full width */
+    .form-container,
+    .delete-container,
+    .login-container,
+    .register-container,
+    .admin-login-container {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* Adjust button padding for smaller screens if necessary */
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.6rem; }
+    h3 { font-size: 1.3rem; }
+    h4 { font-size: 1.1rem; }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .album-list {
+        grid-template-columns: 1fr; /* Single column for very small devices */
+    }
+
+    /* Further reduce heading sizes if needed */
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.4rem; }
+    h3 { font-size: 1.2rem; }
+    h4 { font-size: 1rem; }
+
+    /* Stack buttons in button containers if they are horizontal */
+    .button-container {
+        flex-direction: column;
+        gap: 10px; /* Maintain gap */
+    }
+    .button-container .btn {
+        width: 100%; /* Make stacked buttons full width */
+    }
+}
